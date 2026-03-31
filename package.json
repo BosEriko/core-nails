@@ -1,12 +1,7 @@
 {
   "name": "nails-core",
   "version": "1.0.0",
-  "main": "dist/core/index.js",
-  "types": "dist/core/index.d.ts",
   "bin": {
     "nails": "dist/cli/index.js"
-  },
-  "exports": {
-    "./cli": "./dist/cli/generator/index.js",
   }
 }
