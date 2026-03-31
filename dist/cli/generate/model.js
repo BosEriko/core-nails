@@ -35,7 +35,8 @@ export default ${modelName};
     const schemaFilePath = path.join(dbDir, "schema.ts");
     const schemaBaseContent = `import FirebaseAdmin from "@lib/FirebaseAdmin";
 import Nails from "core-nails";
-import { z } from "zod";`;
+import { z } from "zod";
+`;
     // Ensure schema file exists
     if (!fs.existsSync(schemaFilePath)) {
         fs.writeFileSync(schemaFilePath, schemaBaseContent);
