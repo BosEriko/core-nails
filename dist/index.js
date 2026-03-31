@@ -1,2 +1,3 @@
 import InitializeModel from "./helpers/InitializeModel.js";
-export default { InitializeModel };
+import FirebaseTimestampType from "./helpers/FirebaseTimestampType.js";
+export default { InitializeModel, FirebaseTimestampType };
