@@ -1,5 +1,5 @@
 {
-  "name": "nails-core",
+  "name": "core-nails",
   "version": "1.0.0",
   "bin": {
     "nails": "dist/cli/index.js"
