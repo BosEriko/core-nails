@@ -6,5 +6,11 @@
   },
   "bin": {
     "nails": "dist/cli/index.js"
+  },
+  "devDependencies": {
+    "typescript": "^6.0.2"
+  },
+  "dependencies": {
+    "pluralize": "^8.0.0"
   }
 }
