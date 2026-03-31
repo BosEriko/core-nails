@@ -19,10 +19,11 @@ export async function generateModel(modelName: string) {
   );
 
   // Boilerplate content for model
-  const modelContent = `import CreateService from "../concerns/CreateService";
+  const modelContent = `import FirebaseAdmin from "@lib/FirebaseAdmin";
+import Nails from "core-nails";
 import { ${modelName}Schema } from "@schema";
 
-const ${modelName} = CreateService({
+const ${modelName} = Nails.InitializeModel({
   collection: "${collectionName}",
   schema: ${modelName}Schema,
 });
