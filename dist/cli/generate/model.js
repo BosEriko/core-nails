@@ -34,15 +34,8 @@ export default ${modelName};
     fs.mkdirSync(dbDir, { recursive: true });
     const schemaFilePath = path.join(dbDir, "schema.ts");
     const schemaBaseContent = `import FirebaseAdmin from "@lib/FirebaseAdmin";
-import { z } from "zod";
-
-// Helper Function
-const FirebaseTimestamp = z.union([
-  z.instanceof(FirebaseAdmin.firestore.Timestamp),
-  z.date(),
-  z.custom((val) => val === FirebaseAdmin.firestore.FieldValue.serverTimestamp(), { message: "Expected serverTimestamp()" }),
-]);
-`;
+import Nails from "core-nails";
+import { z } from "zod";`;
     // Ensure schema file exists
     if (!fs.existsSync(schemaFilePath)) {
         fs.writeFileSync(schemaFilePath, schemaBaseContent);
@@ -54,8 +47,8 @@ const FirebaseTimestamp = z.union([
     const schemaStub = `
 // ${modelName} Schema
 export const ${modelName}Schema = z.object({
-  createdAt: FirebaseTimestamp.optional(),
-  updatedAt: FirebaseTimestamp.optional(),
+  createdAt: Nails.FirebaseTimestampType(FirebaseAdmin).optional(),
+  updatedAt: Nails.FirebaseTimestampType(FirebaseAdmin).optional(),
 });
 export type ${modelName}Type = z.infer<typeof ${modelName}Schema>;
 `;
