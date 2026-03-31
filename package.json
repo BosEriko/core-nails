@@ -1,6 +1,6 @@
 {
   "name": "core-nails",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "scripts": {
     "build": "tsc"
   },
@@ -13,6 +13,10 @@
     "typescript": "^6.0.2"
   },
   "dependencies": {
-    "pluralize": "^8.0.0"
+    "pluralize": "^8.0.0",
+    "zod": "^4.3.6"
+  },
+  "exports": {
+    ".": "./dist/index.js"
   }
 }
