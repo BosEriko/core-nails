@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
 import pluralize from "pluralize";
-import { generateModel } from "./model.ts";
+import { generateModel } from "./model.js";
 
 export async function generateScaffold(scaffoldName: string) {
   if (!scaffoldName) {

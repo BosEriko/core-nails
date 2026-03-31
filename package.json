@@ -1,6 +1,11 @@
 {
   "name": "core-nails",
   "version": "1.0.0",
+  {
+    "scripts": {
+      "build": "tsc"
+    }
+  },
   "bin": {
     "nails": "dist/cli/index.js"
   }
