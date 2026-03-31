@@ -1,12 +1,15 @@
 {
   "compilerOptions": {
     "outDir": "dist",
+    "rootDir": "src",
     "module": "ESNext",
     "target": "ES2020",
     "moduleResolution": "Node",
     "esModuleInterop": true,
     "declaration": true,
-    "strict": true
+    "strict": true,
+    "ignoreDeprecations": "6.0",
+    "types": ["node"]
   },
   "include": ["src"]
 }

@@ -1,6 +1,6 @@
 {
   "name": "core-nails",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "scripts": {
     "build": "tsc"
   },
@@ -8,6 +8,8 @@
     "nails": "dist/cli/index.js"
   },
   "devDependencies": {
+    "@types/node": "^25.5.0",
+    "@types/pluralize": "^0.0.33",
     "typescript": "^6.0.2"
   },
   "dependencies": {
