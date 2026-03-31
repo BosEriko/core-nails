@@ -20,6 +20,7 @@ import { ${modelName}Schema } from "@schema";
 const ${modelName} = Nails.InitializeModel({
   collection: "${collectionName}",
   schema: ${modelName}Schema,
+  FirebaseAdmin,
 });
 
 export default ${modelName};
