@@ -110,22 +110,27 @@ export async function POST(req: Request) {
 
   const apiIdRoutePath = path.join(apiIdDir, "route.ts");
 
-  const apiIdRouteContent = `import ${camelName}Controller from "@controller/${camelName}";
+  const apiIdRouteContent = `import { NextRequest } from "next/server";
+import ${camelName}Controller from "@controller/${camelName}";
 
-export async function GET(req: Request, { params }: { params: { id: string } }) {
-  return ${camelName}Controller.show_action(req, (await params).id);
+export async function GET(req: NextRequest, context: { params: Promise<{ id: string }> }): Promise<Response> {
+  const { id } = await context.params;
+  return ${camelName}Controller.show_action(req, id);
 }
 
-export async function PATCH(req: Request, { params }: { params: { id: string } }) {
-  return ${camelName}Controller.update_action(req, (await params).id);
+export async function PATCH(req: NextRequest, context: { params: Promise<{ id: string }> }): Promise<Response> {
+  const { id } = await context.params;
+  return ${camelName}Controller.update_action(req, id);
 }
 
-export async function PUT(req: Request, { params }: { params: { id: string } }) {
-  return ${camelName}Controller.update_action(req, (await params).id);
+export async function PUT(req: NextRequest, context: { params: Promise<{ id: string }> }): Promise<Response> {
+  const { id } = await context.params;
+  return ${camelName}Controller.update_action(req, id);
 }
 
-export async function DELETE(req: Request, { params }: { params: { id: string } }) {
-  return ${camelName}Controller.destroy_action(req, (await params).id);
+export async function DELETE(req: NextRequest, context: { params: Promise<{ id: string }> }): Promise<Response> {
+  const { id } = await context.params;
+  return ${camelName}Controller.destroy_action(req, id);
 }
 `;
 
