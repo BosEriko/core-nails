@@ -74,16 +74,16 @@ function InitializeModel(opts) {
         },
         async where(conditions) {
             let query = collection;
-            for (const cond of conditions) {
-                query = query.where(cond.field, cond.operator, cond.value);
+            for (const [field, value] of Object.entries(conditions)) {
+                query = query.where(field, "==", value);
             }
             const snapshot = await query.get();
             return parseDocs(snapshot);
         },
         async find_by(conditions) {
             let query = collection;
-            for (const cond of conditions) {
-                query = query.where(cond.field, cond.operator, cond.value);
+            for (const [field, value] of Object.entries(conditions)) {
+                query = query.where(field, "==", value);
             }
             const snapshot = await query.limit(1).get();
             if (snapshot.empty)
