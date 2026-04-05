@@ -1,22 +1,6 @@
 import { z, ZodObject, ZodRawShape } from "zod";
 
-type WhereOperator =
-  | "=="
-  | "!="
-  | "<"
-  | "<="
-  | ">"
-  | ">="
-  | "array-contains"
-  | "in"
-  | "not-in"
-  | "array-contains-any";
-
-type WhereCondition<T> = {
-  field: keyof T;
-  operator: WhereOperator;
-  value: any;
-};
+type WhereCondition<T> = Partial<Record<keyof T, any>>;
 
 function InitializeModel<TSchema extends ZodObject<ZodRawShape>>(opts: {
   collection: string;
@@ -119,34 +103,22 @@ function InitializeModel<TSchema extends ZodObject<ZodRawShape>>(opts: {
       await collection.doc(id).delete();
     },
 
-    async where(
-      conditions: WhereCondition<T>[]
-    ): Promise<WithId[]> {
+    async where(conditions: WhereCondition<T>): Promise<WithId[]> {
       let query: any = collection;
 
-      for (const cond of conditions) {
-        query = query.where(
-          cond.field as string,
-          cond.operator,
-          cond.value
-        );
+      for (const [field, value] of Object.entries(conditions)) {
+        query = query.where(field, "==", value);
       }
 
       const snapshot = await query.get();
       return parseDocs(snapshot);
     },
 
-    async find_by(
-      conditions: WhereCondition<T>[]
-    ): Promise<WithId | null> {
+    async find_by(conditions: WhereCondition<T>): Promise<WithId | null> {
       let query: any = collection;
 
-      for (const cond of conditions) {
-        query = query.where(
-          cond.field as string,
-          cond.operator,
-          cond.value
-        );
+      for (const [field, value] of Object.entries(conditions)) {
+        query = query.where(field, "==", value);
       }
 
       const snapshot = await query.limit(1).get();
