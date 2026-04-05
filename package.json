@@ -2,7 +2,8 @@
   "name": "core-nails",
   "version": "1.0.13",
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "bump": "npm version patch"
   },
   "bin": {
     "nails": "dist/cli/index.js"
