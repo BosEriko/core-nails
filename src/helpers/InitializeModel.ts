@@ -13,7 +13,7 @@ function InitializeModel<TSchema extends ZodObject<ZodRawShape>>(opts: {
   type WithId = T & { id: string };
 
   const db = FirebaseAdmin.firestore();
-  const collection = db.collection(collectionName);
+  const collection = db.collection(process.env.COLLECTION_SCOPE ? `${process.env.COLLECTION_SCOPE}__${collectionName}` : collectionName);
 
   function parseDoc(doc: any): WithId | null {
     if (!doc.exists) return null;
